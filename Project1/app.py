@@ -1,16 +1,22 @@
 from fastapi import FastAPI
 import requests
 import config
+from datetime import datetime
 
 app_p1 = FastAPI()
 
 @app_p1.get("/")
-def root(message: str=""):
-    return {"data": "content"}
+def root():
+    return {"data": "root"}
 
-@app_p1.get("/another_api/{api_request}")
-def get_data(api_request: str):
-    print(api_request)
-    url = fr"http://{config.another_host}:{config.another_port}/{api_request}"
-    response = requests.get(url)
-    return response.json()
+@app_p1.get("/get_data/")
+def get_data():
+    try:
+        url = fr"http://{config.another_host}:{config.another_port}/get_data"
+        response = requests.get(url)
+        result = response.json()
+        result["datetime"] = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+        ...
+        return result
+    except Exception as e:
+        return {"error": e}
