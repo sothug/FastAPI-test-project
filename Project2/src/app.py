@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-import os
 import uvicorn
 
 app_p2 = FastAPI()
@@ -13,4 +12,4 @@ def get_data():
     return {"data": "project2 content"}
 
 if __name__ == "__main__":
-    uvicorn.run("app:app_p2", host=os.environ.get('HOST'), port=int(os.environ.get('PORT')), reload=True)
+    uvicorn.run("app:app_p2", host='0.0.0.0', port=8000, reload=True)

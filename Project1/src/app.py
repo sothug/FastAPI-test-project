@@ -12,7 +12,7 @@ def root():
 
 @app_p1.get("/get_data")
 def get_data():
-    url = os.environ.get('API_URL') + '/get_data'
+    url = os.environ.get('URL') + '/get_data'
     try:
         response = requests.get(url)
         response_data = response.json()
@@ -25,4 +25,4 @@ def get_data():
         return result
         
 if __name__ == "__main__":
-    uvicorn.run("app:app_p1", host=os.environ.get('HOST'), port=int(os.environ.get('PORT')), reload=True)
+    uvicorn.run("app:app_p1", host='0.0.0.0', port=8000, reload=True)

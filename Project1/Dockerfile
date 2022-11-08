@@ -1,14 +1,10 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim
 
-EXPOSE 8501
 EXPOSE 8000
 
-# ENV HOST='127.0.0.2'
-ENV HOST='0.0.0.0'
-ENV PORT=8501
-# ENV API_URL='http://127.0.0.3:8000'
-ENV API_URL='http://localhost:8000'
+ARG URL
+ENV URL=${URL}
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -29,5 +25,4 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-# CMD ["uvicorn", "--bind", "127.0.0.2:8000", "-k", "uvicorn.workers.UvicornWorker", "app:app_p1"]
 CMD [ "python", "app.py" ]

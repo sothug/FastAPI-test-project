@@ -1,17 +1,24 @@
-version: '1'
+version: '3'
 
 services:
   project1:
-    build: Project1
+    build: 
+      context: Project1
+      args:
+        URL: "http://project2:8000"
     ports:
-      - 8501:8501
+      - 5000:8000
     volumes:
       - './Project1/src:/app'
+    networks:
+      - common
     depends_on:
       - project2
   project2:
     build: Project2
-    ports:
-      - 8000:8000
     volumes:
       - './Project2/src:/app'
+    networks:
+      - common
+networks:
+  common:
