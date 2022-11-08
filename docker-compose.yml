@@ -1,0 +1,17 @@
+version: '1'
+
+services:
+  project1:
+    build: Project1
+    ports:
+      - 8501:8501
+    volumes:
+      - './Project1/src:/app'
+    depends_on:
+      - project2
+  project2:
+    build: Project2
+    ports:
+      - 8000:8000
+    volumes:
+      - './Project2/src:/app'
