@@ -3,8 +3,6 @@ FROM python:3.8-slim
 
 EXPOSE 8000
 
-ENV PORT=8000
-
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 

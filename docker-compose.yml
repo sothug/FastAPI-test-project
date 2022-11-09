@@ -5,9 +5,9 @@ services:
     build: 
       context: Project1
       args:
-        URL: "http://project2:8000"
+        URL: "http://project2"
     ports:
-      - 5000:8000
+      - 5000:80
     volumes:
       - './Project1/src:/app'
     networks:
