@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 import uvicorn
 
-app_p2 = FastAPI()
+app_p2 = FastAPI(openapi_url=f"/api/v1/project2/openapi.json", docs_url="/api/v1/project2/docs")
 
-@app_p2.get("/")
+@app_p2.get("/api/v1/project2/")
 def root():
     return {"data": "project2 message"}
 
-@app_p2.get("/get_data")
+@app_p2.get("/api/v1/project2/get_data")
 def get_data():
     return {"data": "project2 content"}
 

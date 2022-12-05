@@ -4,13 +4,13 @@ import os
 import datetime
 import uvicorn
 
-app_p1 = FastAPI()
+app_p1 = FastAPI(openapi_url=f"/api/v1/project1/openapi.json", docs_url="/api/v1/project1/docs")
 
-@app_p1.get("/")
+@app_p1.get(f"/api/v1/project1/")
 def root():
     return {"data": "project1 message"}
 
-@app_p1.get("/get_data")
+@app_p1.get(f"/api/v1/project1/get_data")
 def get_data():
     url = os.environ.get('URL') + '/get_data'
     try:
